@@ -22,11 +22,11 @@ export default function Footer({ onOpenModal }) {
 
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         
-        {/* 4 Distinct Utility Columns */}
+        {/* 3 Distinct Utility Columns */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-gray-800">
           
           {/* Column 1: Brand mission tagline & horizontal row of circular social buttons */}
-          <div className="lg:col-span-4 flex flex-col items-start">
+          <div className="lg:col-span-5 flex flex-col items-start">
             <a href="#home" className="flex items-center gap-3 mb-4">
               <img 
                 src="/assets/images/logo.png" 
@@ -89,27 +89,8 @@ export default function Footer({ onOpenModal }) {
             </ul>
           </div>
 
-          {/* Column 3: Live integration status string or system feed */}
-          <div className="lg:col-span-2 flex flex-col items-start">
-            <h4 className="font-heading font-extrabold text-base text-white tracking-tight mb-5 border-l-2 border-[#D8235C] pl-3">
-              System Status
-            </h4>
-
-            <div className="p-4 rounded-2xl bg-[#24282D] border border-gray-800 w-full flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-xs font-bold text-gray-200">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#2EE6A6]"></span>
-                <span>All Systems Normal</span>
-              </div>
-              <span className="text-[11px] text-gray-400 font-normal leading-tight">
-                API Mesh: 99.999% SLA<br />
-                Audit Engines: Active<br />
-                Region: North America East
-              </span>
-            </div>
-          </div>
-
-          {/* Column 4: Email newsletter subscribe form containing inline input box and arrow submission button */}
-          <div className="lg:col-span-3 flex flex-col items-start">
+          {/* Column 3: Email newsletter subscribe form containing inline input box and arrow submission button */}
+          <div className="lg:col-span-4 flex flex-col items-start">
             <h4 className="font-heading font-extrabold text-base text-white tracking-tight mb-5 border-l-2 border-[#D8235C] pl-3">
               Stay Connected
             </h4>
