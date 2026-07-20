@@ -1,140 +1,160 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Menu, X, ShieldCheck } from 'lucide-react';
+import { ChevronDown, Menu, X, Search, ShoppingBag, ArrowRight } from 'lucide-react';
 
 export default function Navbar({ onOpenModal }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
-      <header className={`w-full max-w-[1260px] transition-all duration-300 rounded-full glass-panel ${
-        scrolled ? 'bg-[#05050A]/95 border-[#7C5CFF]/30 shadow-[0_16px_40px_rgba(0,0,0,0.6)]' : 'bg-[#0B0F19]/80'
-      }`}>
-        <div className="flex items-center justify-between h-16 px-6 md:px-8">
-          
-          {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
-            <img 
-              src="/assets/images/logo.png" 
-              alt="Venus Global Technology Logo" 
-              className="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(91,91,246,0.5)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
-            />
-            <div className="flex flex-col">
-              <span className="font-heading font-extrabold text-base tracking-tight text-white leading-none">
-                VENUS GLOBAL
-              </span>
-              <span className="text-[10px] font-bold tracking-[0.22em] text-[#A5B4FC] uppercase mt-0.5">
-                TECHNOLOGY
-              </span>
-            </div>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-md py-3' : 'bg-white border-b border-gray-100 py-4'
+    }`}>
+      <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between">
+        
+        {/* Left: Original Logo */}
+        <a href="#home" className="flex items-center gap-3 group">
+          <img 
+            src="/assets/images/logo.png" 
+            alt="Venus Global Logo" 
+            className="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(216,35,92,0.4)] transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="flex flex-col">
+            <span className="font-heading font-extrabold text-lg tracking-tight text-[#1A1D20] leading-none">
+              VENUS<span className="text-[#D8235C]">GLOBAL</span>
+            </span>
+            <span className="text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mt-0.5">
+              AGENCY & TECH
+            </span>
+          </div>
+        </a>
+
+        {/* Center: Multi-tiered Nav Menu */}
+        <nav className="hidden lg:flex items-center gap-8">
+          <a href="#home" className="font-heading font-semibold text-sm text-[#1A1D20] hover:text-[#D8235C] transition-colors">
+            Home
           </a>
 
-          {/* Desktop Nav Items */}
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#home" className="font-heading font-semibold text-sm text-[#94A3B8] hover:text-white transition-colors">
-              Home
-            </a>
-            <a href="#about" className="font-heading font-semibold text-sm text-[#94A3B8] hover:text-white transition-colors">
-              About Us
-            </a>
+          <a href="#about" className="font-heading font-semibold text-sm text-[#1A1D20] hover:text-[#D8235C] transition-colors">
+            About Us
+          </a>
 
-            {/* Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
-            >
-              <button className="flex items-center gap-1 font-heading font-semibold text-sm text-[#94A3B8] hover:text-white transition-colors py-2">
-                Services <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {dropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 p-3 rounded-2xl glass-panel bg-[#0B0F19]/95 border-[#7C5CFF]/30 shadow-2xl flex flex-col gap-1 z-50">
-                  <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#5B5BF6]/15 text-sm font-semibold text-[#94A3B8] hover:text-white transition-all">
-                    <i className="fa-solid fa-code text-[#5B5BF6]"></i> Software & Data AI
-                  </a>
-                  <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#5B5BF6]/15 text-sm font-semibold text-[#94A3B8] hover:text-white transition-all">
-                    <i className="fa-solid fa-robot text-[#8B5CF6]"></i> Agentic AI Solutions
-                  </a>
-                  <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#5B5BF6]/15 text-sm font-semibold text-[#94A3B8] hover:text-white transition-all">
-                    <i className="fa-solid fa-cloud text-[#5B5BF6]"></i> Cloud Infrastructure
-                  </a>
-                  <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#5B5BF6]/15 text-sm font-semibold text-[#94A3B8] hover:text-white transition-all">
-                    <i className="fa-solid fa-bullhorn text-[#FF6B4A]"></i> Digital Marketing
-                  </a>
-                  <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#5B5BF6]/15 text-sm font-semibold text-[#94A3B8] hover:text-white transition-all">
-                    <i className="fa-solid fa-leaf text-[#2EE6A6]"></i> ESG Solutions
-                  </a>
-                  <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-[#5B5BF6]/15 text-sm font-semibold text-[#94A3B8] hover:text-white transition-all">
-                    <i className="fa-solid fa-shield-halved text-[#7C5CFF]"></i> IATF Auditing
-                  </a>
-                </div>
-              )}
-            </div>
-
-            <a href="#process" className="font-heading font-semibold text-sm text-[#94A3B8] hover:text-white transition-colors">
-              Investment
-            </a>
-            <a href="#locations" className="font-heading font-semibold text-sm text-[#94A3B8] hover:text-white transition-colors">
-              Contact Us
-            </a>
-            <a href="#cta" className="font-heading font-semibold text-sm text-[#94A3B8] hover:text-white transition-colors">
-              Blogs
-            </a>
-          </nav>
-
-          {/* Right Header Actions */}
-          <div className="hidden lg:flex items-center gap-4">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-[#94A3B8]">
-              <span className="w-2 h-2 rounded-full bg-[#2EE6A6] animate-pulse shadow-[0_0_8px_#2EE6A6]"></span>
-              <span>All Systems Operational</span>
-            </div>
-
-            <button 
-              onClick={onOpenModal}
-              className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#5B5BF6] via-[#8B5CF6] to-[#FF6B4A] text-white font-heading font-bold text-xs tracking-wide hover:shadow-[0_0_25px_rgba(124,92,255,0.5)] hover:scale-105 transition-all duration-300"
-            >
-              Book Consultation
+          {/* Multi-tiered Services Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setServicesDropdown(true)}
+            onMouseLeave={() => setServicesDropdown(false)}
+          >
+            <button className="flex items-center gap-1 font-heading font-semibold text-sm text-[#1A1D20] hover:text-[#D8235C] transition-colors py-2">
+              Services <ChevronDown className="w-4 h-4 text-gray-400" />
             </button>
+
+            {servicesDropdown && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-72 p-3 bg-white rounded-2xl border border-gray-100 shadow-2xl flex flex-col gap-1 z-50 animate-in fade-in slide-in-from-top-2">
+                <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-xs font-bold text-[#1A1D20] hover:text-[#D8235C] transition-all">
+                  <span className="w-2 h-2 rounded-full bg-[#D8235C]"></span> Agentic AI & Automation
+                </a>
+                <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-xs font-bold text-[#1A1D20] hover:text-[#D8235C] transition-all">
+                  <span className="w-2 h-2 rounded-full bg-[#1A1D20]"></span> Cloud & Software Architecture
+                </a>
+                <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-xs font-bold text-[#1A1D20] hover:text-[#D8235C] transition-all">
+                  <span className="w-2 h-2 rounded-full bg-[#D8235C]"></span> Digital Marketing & Growth
+                </a>
+                <a href="#services" className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-xs font-bold text-[#1A1D20] hover:text-[#D8235C] transition-all">
+                  <span className="w-2 h-2 rounded-full bg-[#1A1D20]"></span> IATF Compliance Audits
+                </a>
+              </div>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
+          <a href="#portfolio" className="font-heading font-semibold text-sm text-[#1A1D20] hover:text-[#D8235C] transition-colors">
+            Portfolio
+          </a>
+
+          <a href="#team" className="font-heading font-semibold text-sm text-[#1A1D20] hover:text-[#D8235C] transition-colors">
+            Team
+          </a>
+
+          <a href="#blog" className="font-heading font-semibold text-sm text-[#1A1D20] hover:text-[#D8235C] transition-colors">
+            Blog
+          </a>
+        </nav>
+
+        {/* Right: Search, Cart, CTA Button */}
+        <div className="hidden md:flex items-center gap-5">
+          {/* Search Toggle */}
+          <div className="relative">
+            <button 
+              onClick={() => setSearchOpen(!searchOpen)}
+              className="p-2 text-gray-600 hover:text-[#D8235C] transition-colors rounded-full hover:bg-gray-100"
+            >
+              <Search className="w-5 h-5" />
+            </button>
+            {searchOpen && (
+              <div className="absolute right-0 top-full mt-2 w-64 p-2 bg-white rounded-xl shadow-xl border border-gray-200">
+                <input 
+                  type="text" 
+                  placeholder="Search platform..." 
+                  className="w-full px-3 py-1.5 text-xs text-[#1A1D20] outline-none border border-gray-200 rounded-lg focus:border-[#D8235C]"
+                  autoFocus
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Cart Icon */}
+          <button className="relative p-2 text-gray-600 hover:text-[#D8235C] transition-colors rounded-full hover:bg-gray-100">
+            <ShoppingBag className="w-5 h-5" />
+            <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#D8235C] text-white text-[9px] font-bold flex items-center justify-center">
+              2
+            </span>
+          </button>
+
+          {/* CTA Action Button */}
           <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-white hover:text-[#5B5BF6]"
+            onClick={onOpenModal}
+            className="px-6 py-2.5 rounded-full bg-[#D8235C] text-white font-heading font-bold text-xs tracking-wide shadow-md hover:bg-[#B81B4B] hover:shadow-lg transition-all duration-300 flex items-center gap-2"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            Get Started <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="md:hidden p-6 bg-[#0B0F19]/98 rounded-3xl border border-white/10 mt-2 flex flex-col gap-4 shadow-2xl">
-            <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#94A3B8] hover:text-white">Home</a>
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#94A3B8] hover:text-white">About Us</a>
-            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#94A3B8] hover:text-white">Services</a>
-            <a href="#process" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#94A3B8] hover:text-white">Investment</a>
-            <a href="#locations" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#94A3B8] hover:text-white">Contact Us</a>
-            <a href="#cta" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#94A3B8] hover:text-white">Blogs</a>
+        {/* Mobile Hamburger Menu */}
+        <button 
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="lg:hidden p-2 text-[#1A1D20] hover:text-[#D8235C]"
+        >
+          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
 
-            <button 
-              onClick={() => { setMobileMenuOpen(false); onOpenModal(); }}
-              className="mt-2 w-full py-3 rounded-full bg-gradient-to-r from-[#5B5BF6] to-[#FF6B4A] text-white font-heading font-bold text-xs uppercase"
-            >
-              Book Consultation
-            </button>
-          </div>
-        )}
-      </header>
-    </div>
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-white border-b border-gray-200 px-6 py-4 flex flex-col gap-3">
+          <a href="#home" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#1A1D20] hover:text-[#D8235C]">Home</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#1A1D20] hover:text-[#D8235C]">About Us</a>
+          <a href="#services" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#1A1D20] hover:text-[#D8235C]">Services</a>
+          <a href="#portfolio" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#1A1D20] hover:text-[#D8235C]">Portfolio</a>
+          <a href="#team" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#1A1D20] hover:text-[#D8235C]">Team</a>
+          <a href="#blog" onClick={() => setMobileMenuOpen(false)} className="text-sm font-semibold text-[#1A1D20] hover:text-[#D8235C]">Blog</a>
+          
+          <button 
+            onClick={() => { setMobileMenuOpen(false); onOpenModal(); }}
+            className="mt-2 w-full py-3 rounded-full bg-[#D8235C] text-white font-heading font-bold text-xs uppercase shadow-md"
+          >
+            Get Started
+          </button>
+        </div>
+      )}
+    </header>
   );
 }

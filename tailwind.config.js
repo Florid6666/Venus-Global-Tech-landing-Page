@@ -7,15 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkVoid: '#05050A',
-        darkCard: '#0B0F19',
-        darkCardHover: '#131A2A',
-        lightBg: '#F8F8FC',
-        indigoPrimary: '#5B5BF6',
-        violetSecondary: '#8B5CF6',
-        coralAccent: '#FF6B4A',
-        glowAccent: '#7C5CFF',
-        emeraldSuccess: '#2EE6A6',
+        darkSlate: '#1A1D20',
+        darkCard: '#24282D',
+        darkCardBorder: '#2E333A',
+        raspberry: '#D8235C',
+        raspberryHover: '#B81B4B',
+        lightBg: '#F8FAFC',
+        grayMuted: '#94A3B8',
       },
       fontFamily: {
         heading: ['Space Grotesk', 'Satoshi', 'sans-serif'],
